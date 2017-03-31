@@ -136,7 +136,8 @@ public class MainChat extends JFrame implements Runnable {
 					String userList = str.substring(CommonUtil.USER_LIST.length());//更新用户列表
 					talkList.setText(userList);
 				} else {
-					taContent.setText(taContent.getText()+str+'\n');//更新聊天内容
+//					taContent.setText(taContent.getText()+str+'\n');//更新聊天内容
+					taContent.appendText(str+'\n');//更新聊天内容
 				}
 			}
 		} catch (SocketException e) {

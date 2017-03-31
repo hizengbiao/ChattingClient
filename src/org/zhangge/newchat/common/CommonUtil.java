@@ -2,7 +2,7 @@ package org.zhangge.newchat.common;
 
 public class CommonUtil {
 
-	public static int PORT = 52001;//设置服务器端口号
+	public static int PORT = 52020;//设置服务器端口号
 	public static String SERVER_IP="211.103.109.77";//服务器地址
 	
 	public static String USERPASSWD_SPLIT = "%";//帐号和密码信息的分隔符
