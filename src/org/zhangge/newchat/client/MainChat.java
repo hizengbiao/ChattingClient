@@ -1,5 +1,6 @@
 package org.zhangge.newchat.client;
 
+import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.SocketException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,6 +30,7 @@ public class MainChat extends JFrame implements Runnable {
 	private TextArea talkList = new TextArea();//群聊成员列表
 	private JButton closeWindow = new JButton("退出群聊");//发送按钮
 	private JButton sendMsg = new JButton("发送");//发送按钮
+	private JLabel pic=new JLabel();
 	private DataOutputStream dos;
 	private DataInputStream dis;
 	private boolean beConnected;
@@ -64,8 +67,11 @@ public class MainChat extends JFrame implements Runnable {
 		talkList.setBounds(460, 220, 150, 300);//群聊成员列表
 		this.add(talkList);
 		
-		
-		
+		ImageIcon icon = new ImageIcon("images\\benbenla.jpg");
+		  icon.setImage(icon.getImage().getScaledInstance(150,150, Image.SCALE_DEFAULT));
+		pic.setBounds(460, 30, 150, 150);//头像
+		 pic.setIcon(icon);
+		 this.add(pic);
 		/*list.setBounds(50, 30, 200, 20);//群聊成员列表，标题
 		this.add(list);
 		talkList.setBounds(10, 70, 170, 400);//群聊成员列表
