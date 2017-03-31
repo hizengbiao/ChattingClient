@@ -87,10 +87,15 @@ public class LoginChat extends JFrame implements ActionListener {
 		Port.setBounds(150, 190, 120, 20);
 		c.add(Port);
 		
+		
 		Load.setBounds(50,250,80,40);
 		c.add(Load);
 		Quit.setBounds(190,250,80,40);
 		c.add(Quit);
+		
+		Host.setText(CommonUtil.ServerIp);
+		Port.setText(CommonUtil.PORT+"");
+		
 		Load.addActionListener(this);
 		Quit.addActionListener(this);
 	}

@@ -2,21 +2,22 @@ package org.zhangge.newchat.common;
 
 public class CommonUtil {
 
-	public static int PORT = 52027;//设置服务器端口号
+	public static int PORT = 52000;//设置服务器端口号
+	public static String ServerIp="211.103.109.77";//服务器地址
 	public static String USERPASSWD_SPLIT = "%";//帐号和密码信息的分隔符
 	public static String USERNAME_MARK = "username:";//登陆信息的用户名标志
 	public static String PASSWORD_MARK = "password:";//登陆信息的密码标志
 	public static String USER_LIST = "u%l:";//用户列表信息标志
 	public static String WELCOME_MESSAGE = "********大家一起来欢迎新登陆用户^_^: ";//成功登陆的欢迎信息
 	public static String DEFAULT_HOST = "127.0.0.1";//默认服务器地址
-	public static String LOGIN_TITLE = "张戈即时聊天室登陆窗口";//登陆窗口标题
-	public static String USERNAME = "登陆帐号：";//登陆帐号
+	public static String LOGIN_TITLE = "和肖敏小朋友的即时聊天室登陆窗口";//登陆窗口标题
+	public static String USERNAME = "请输入您的昵称：";//登陆帐号
 	public static String PASSWORD = "登陆密码：";//登陆密码
 	public static String HOSTSERVER = "服务器地址：";//服务器地址
 	public static String SERVERPORT = "服务器端口：";//服务器端口
 	public static String LOAD = "登陆";//登陆按钮
 	public static String QUIT = "退出";//退出登陆按钮
-	public static String MAIN_TITLE = "张戈即时聊天室聊天窗口";//聊天主窗口标题
+	public static String MAIN_TITLE = "葬爱家族即时聊天室";//聊天主窗口标题
 	public static String ONLINE_USER = "当前在线用户列表....";//用户列表显示标题
 	public static String TALKING_HISTORY = "聊天记录....";//聊天记录显示标题
 	
