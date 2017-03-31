@@ -87,10 +87,15 @@ public class LoginChat extends JFrame implements ActionListener {
 		Port.setBounds(150, 190, 120, 20);
 		c.add(Port);
 		
+		
 		Load.setBounds(50,250,80,40);
 		c.add(Load);
 		Quit.setBounds(190,250,80,40);
 		c.add(Quit);
+		
+		Host.setText(CommonUtil.SERVER_IP);
+		Port.setText(CommonUtil.PORT+"");
+		
 		Load.addActionListener(this);
 		Quit.addActionListener(this);
 	}
@@ -134,28 +139,36 @@ public class LoginChat extends JFrame implements ActionListener {
 	public boolean connect(String host, int port){
 		try {
 			if (host == null || host.equals("")) {
-				host = CommonUtil.DEFAULT_HOST;
+				host = CommonUtil.SERVER_IP;
 			}
 			s=new Socket(host, port);
 			dos=new DataOutputStream(s.getOutputStream());
 			dis=new DataInputStream(s.getInputStream());
-System.out.println(CommonUtil.SUCCEED_CONNECTE);
+			System.out.println(CommonUtil.SUCCEED_CONNECTE);
 			dos.writeUTF(message);//发送帐号密码信息
 			String conmsg = dis.readUTF();
 			if (conmsg.equals(CommonUtil.COMFIRM_FAIL_MARK)) {
 				this.showReturnMessage(CommonUtil.COMFIRM_FAIL);
 				bconnected = false;
 			} else {
-System.out.println(CommonUtil.COMFIRM_SUCCESS);
+				System.out.println(CommonUtil.COMFIRM_SUCCESS);
 				bconnected = true;
 			}
 		} catch(IllegalArgumentException e) {
+			this.showReturnMessage(CommonUtil.CONNECT_ERROR);
+		} catch (UnknownHostException e) {
+			this.showReturnMessage(CommonUtil.CONNECT_ERROR);
+		} catch(SocketException e) {
+			this.showReturnMessage(CommonUtil.CONNECT_ERROR);
+		}
+		/*catch(IllegalArgumentException e) {
 			this.showReturnMessage(CommonUtil.PORT_ILLEGAL);
 		} catch (UnknownHostException e) {
 			this.showReturnMessage(CommonUtil.HOST_ERROR);
 		} catch(SocketException e) {
 			this.showReturnMessage(CommonUtil.PORT_ERROR);
-		} catch (IOException e) {
+		}*/
+		catch (IOException e) {
 			this.showReturnMessage(CommonUtil.IOEXCEPTION_MESSAGE);
 			System.exit(0);
 		}

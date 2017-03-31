@@ -60,7 +60,7 @@ public class Vclient implements Runnable {
 	public void close() {
 		clients.remove(this);
 		StringBuilder offlineMsg = new StringBuilder();
-		offlineMsg.append(name).append(" has gone!");
+		offlineMsg.append("                     ********用户\"").append(name).append("\"下线了********");
 		this.sendMessage(offlineMsg);
 		this.sendUserList();
 		try {
@@ -89,14 +89,15 @@ public class Vclient implements Runnable {
 		try{ 
 			String message = null;//客户端发送过来的内容，服务器转发给所有用户
 			StringBuilder welMsg = new StringBuilder();
-			welMsg.append(CommonUtil.WELCOME_MESSAGE).append(name).append("********");
+			//welMsg.append(CommonUtil.WELCOME_MESSAGE).append(name).append("********");
+			welMsg.append(CommonUtil.WELCOME_MESSAGE).append(name).append("\"上线了，大家欢迎~~~********");
 			sendMessage(welMsg);//第一次登陆，发送欢迎信息
 			sendUserList();//发送新的用户列表
 			while (beConnected){
 				message=dis.readUTF();//读取客户端的信息
 				DateFormat d1 = DateFormat.getDateTimeInstance();//发送聊天信息
 				StringBuilder chatMsg = new StringBuilder();
-				chatMsg.append("----------").append(name).append(" ").append(d1.format(new Date())).append(" : \n ").append(message);
+				chatMsg.append("----------").append(name).append("----------").append(d1.format(new Date())).append(" : \n ").append(message);
 				sendMessage(chatMsg);
 			}
 		}catch(SocketException e){
