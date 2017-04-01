@@ -1,10 +1,11 @@
-package org.zhangge.newchat.server;
+package org.HeXiaoMin.newchat.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.BindException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.zhangge.newchat.common.CommonUtil;
+import org.HeXiaoMin.newchat.common.CommonUtil;
 
 /**
- * @author zhangge
- * 登陆策略：帐号信息存放在内存里面，用户第一次登陆后注册，以后登陆需要记住密码
+ * @author 和肖敏
+ * 登陆策略：帐号信息存放在内存里面，用户第一次登陆即注册，以后登陆需要使用第一次登录时的密码，如果服务器重新启动则需要重装注册
  */
 public class ServerChat {
 	
@@ -44,6 +45,8 @@ public class ServerChat {
 	public void start(){
 		try{
 			ss=new ServerSocket(CommonUtil.PORT);//打开套接字
+			System.out.println("服务器主机名/IP是："+InetAddress.getLocalHost());
+			System.out.println("服务器端口是："+ss.getLocalPort());
 			started =true;//设置启动标志
 			while(started){
 				 Socket s = ss.accept();//等待一个客户上线，并且读取登陆信息

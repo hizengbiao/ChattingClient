@@ -1,4 +1,4 @@
-package org.zhangge.newchat.client;
+package org.HeXiaoMin.newchat.client;
 
 import java.awt.TextArea;
 import java.awt.event.KeyAdapter;

@@ -1,4 +1,4 @@
-package org.zhangge.newchat.server;
+package org.HeXiaoMin.newchat.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,7 +10,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.zhangge.newchat.common.CommonUtil;
+import org.HeXiaoMin.newchat.common.CommonUtil;
 
 public class Vclient implements Runnable {
 
@@ -60,7 +60,7 @@ public class Vclient implements Runnable {
 	public void close() {
 		clients.remove(this);
 		StringBuilder offlineMsg = new StringBuilder();
-		offlineMsg.append("                     ********用户\"").append(name).append("\"下线了********");
+		offlineMsg.append("                     ********您的好友\"").append(name).append("\"下线了********");
 		this.sendMessage(offlineMsg);
 		this.sendUserList();
 		try {
