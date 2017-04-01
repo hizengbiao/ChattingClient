@@ -1,4 +1,4 @@
-package org.zhangge.newchat.server;
+package org.HeXiaoMin.newchat.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,7 +10,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.zhangge.newchat.common.CommonUtil;
+import org.HeXiaoMin.newchat.common.CommonUtil;
 
 public class Vclient implements Runnable {
 
@@ -60,7 +60,7 @@ public class Vclient implements Runnable {
 	public void close() {
 		clients.remove(this);
 		StringBuilder offlineMsg = new StringBuilder();
-		offlineMsg.append("                     ********用户\"").append(name).append("\"下线了********");
+		offlineMsg.append("                     ********您的好友\"").append(name).append("\"下线了********");
 		this.sendMessage(offlineMsg);
 		this.sendUserList();
 		try {
@@ -76,13 +76,40 @@ public class Vclient implements Runnable {
 	 * 往每个用户发送在线用户链表
 	 */
 	public void sendUserList() {
-		StringBuilder nameList = new StringBuilder();//用于存放在线用户列表
-		nameList.append(CommonUtil.USER_LIST);
-		for (int i = 0; i < clients.size(); i++) {
-			Vclient c = clients.get(i);
-			nameList.append(c.getName()).append("\n");
+		
+		try {
+			for (int i=0;i<clients.size();i++){
+				Vclient c=clients.get(i);
+				
+				StringBuilder nameList = new StringBuilder();//用于存放在线用户列表
+				nameList.append(CommonUtil.USER_LIST);
+				for (int j = 0; j < clients.size(); j++) {
+					Vclient c2 = clients.get(j);
+					nameList.append(" "+(j+1)+":   "+c2.getName()+(i==j?"（我）":"")+"\n");
+				}
+				
+				
+				
+				c.dos.writeUTF(nameList.toString());
+			}
+		} catch (NullPointerException e) {
+			System.out.println("发送信息失败");
+		} catch (IOException e) {
+			System.out.println("发送失败！");
 		}
-		sendMessage(nameList);
+		
+		
+		
+//		StringBuilder nameList = new StringBuilder();//用于存放在线用户列表
+//		nameList.append(CommonUtil.USER_LIST);
+//		for (int i = 0; i < clients.size(); i++) {
+//			Vclient c = clients.get(i);
+//			nameList.append("    "+c.getName()).append("\n");
+//		}
+//		sendMessage(nameList);
+		
+		
+		
 	}
 	
 	public void run() {
