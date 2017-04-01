@@ -1,6 +1,7 @@
 package org.HeXiaoMin.newchat.client;
 
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -12,12 +13,15 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import org.HeXiaoMin.newchat.common.CommonUtil;
 
@@ -47,6 +51,8 @@ public class LoginChat extends JFrame implements ActionListener {
 	private String host;
 	private int port;
 
+	private JPanel contentPane;
+
 	/**
 	 * @Title:LoadFrame
 	 * @Description:TODO 登陆窗口，启动的入口
@@ -56,11 +62,26 @@ public class LoginChat extends JFrame implements ActionListener {
 	 */
 	public void loadFrame() {//加载登录窗口
 		this.setTitle(CommonUtil.LOGIN_TITLE);
-		Container c = this.getContentPane();
+//		Container c = this.getContentPane();
+		
+		setBounds(400, 300, 350, 350);//设置窗口大小，四个参数表示(x,y,width,height)，x,y表示窗口左上角点的x,y值，后两个参数表示窗口的宽度和高度
+		
+		contentPane = new JPanel() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(new ImageIcon(
+						"images\\bg_login.jpg").getImage(), 0,
+						0, getWidth(), getHeight(), null);
+			}
+		};
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
 		this.setLayout(null);
-		this.setBounds(400, 300, 350, 350);//设置窗口大小，四个参数表示(x,y,width,height)，x,y表示窗口左上角点的x,y值，后两个参数表示窗口的宽度和高度
-		this.setVisible(true);//设置窗口可见
-		this.setResizable(false);//窗口大小不可调整
+		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				e.getWindow().dispose();
@@ -68,32 +89,35 @@ public class LoginChat extends JFrame implements ActionListener {
 			}
 		});
 		UserName.setBounds(50, 40, 100, 20);
-		c.add(UserName);
+		this.add(UserName);
 		Name.setBounds(150, 40, 120, 20);
-		c.add(Name);
+		this.add(Name);
 
 		UserPaw.setBounds(50, 90, 100, 20);
-		c.add(UserPaw);
+		this.add(UserPaw);
 		Paw.setBounds(150, 90, 120, 20);
-		c.add(Paw);
+		this.add(Paw);
 
 		ServerHost.setBounds(50, 140, 100, 20);
-		c.add(ServerHost);
+		this.add(ServerHost);
 		Host.setBounds(150, 140, 120, 20);
-		c.add(Host);
+		this.add(Host);
 
 		ServerPort.setBounds(50, 190, 100, 20);
-		c.add(ServerPort);
+		this.add(ServerPort);
 		Port.setBounds(150, 190, 120, 20);
-		c.add(Port);
+		this.add(Port);
 
 		Load.setBounds(50, 250, 80, 40);
-		c.add(Load);
+		this.add(Load);
 		Quit.setBounds(190, 250, 80, 40);
-		c.add(Quit);
+		this.add(Quit);
 
 		Host.setText(CommonUtil.SERVER_IP);//设置默认的服务器IP
 		Port.setText(CommonUtil.PORT + "");//设置默认的服务器端口
+		
+		this.setVisible(true);//设置窗口可见
+		this.setResizable(false);//窗口大小不可调整
 
 		Load.addActionListener(this);
 		Quit.addActionListener(this);

@@ -1,5 +1,6 @@
 package org.HeXiaoMin.newchat.client;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import org.HeXiaoMin.newchat.common.CommonUtil;
 
@@ -36,6 +39,7 @@ public class MainChat extends JFrame implements Runnable {
 	private boolean beConnected;
 	private String name;
 	private String imgUrl;
+	private JPanel contentPane;
 
 	public MainChat(DataInputStream dis, DataOutputStream dos, String name) {
 		this.dis = dis;
@@ -80,6 +84,21 @@ public class MainChat extends JFrame implements Runnable {
 	public void launchFrame() {
 		this.setTitle(CommonUtil.MAIN_TITLE + "        当前用户：" + name);
 		setBounds(100, 100, 650, 590);
+		
+		contentPane = new JPanel() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(new ImageIcon(
+						"images\\bg.jpg").getImage(), 0,
+						0, getWidth(), getHeight(), null);
+			}
+		};
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
 		this.setLayout(null);
 
 		content.setBounds(180, 10, 200, 20);// 聊天记录，标题
@@ -115,6 +134,7 @@ public class MainChat extends JFrame implements Runnable {
 		 * sendMsg.setBounds(arg0, arg1, arg2, arg3); this.add(sendMsg);
 		 */
 		setVisible(true);
+		this.setResizable(false);//窗口大小不可调整
 		closeWindow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

@@ -3,7 +3,7 @@ package org.HeXiaoMin.newchat.common;
 public class CommonUtil {
 
 	public static int PORT = 52020;//设置服务器端口号
-	public static String SERVER_IP="112.4.240.42";//服务器地址
+	public static String SERVER_IP="112.24.27.139";//服务器地址
 	
 	public static String USERPASSWD_SPLIT = "%";//帐号和密码信息的分隔符
 	public static String USERNAME_MARK = "username:";//登陆信息的用户名标志
