@@ -3,13 +3,13 @@ package org.HeXiaoMin.newchat.common;
 public class CommonUtil {
 
 	public static int PORT = 52020;//设置服务器端口号
-	public static String SERVER_IP="112.24.27.139";//服务器地址
+	public static String SERVER_IP="211.103.111.148";//服务器地址
 	
 	public static String USERPASSWD_SPLIT = "%";//帐号和密码信息的分隔符
 	public static String USERNAME_MARK = "username:";//登陆信息的用户名标志
 	public static String PASSWORD_MARK = "password:";//登陆信息的密码标志
 	public static String USER_LIST = "u%l:";//用户列表信息标志
-	public static String WELCOME_MESSAGE = "              ********您的好友\"";//成功登陆的欢迎信息
+	public static String WELCOME_MESSAGE = "              ########您的好友\"";//成功登陆的欢迎信息
 //	public static String DEFAULT_HOST = "127.0.0.1";//默认服务器地址
 	public static String LOGIN_TITLE = "和肖敏小朋友的即时聊天室登陆窗口";//登陆窗口标题
 	public static String USERNAME = "您的昵称：";//登陆帐号
